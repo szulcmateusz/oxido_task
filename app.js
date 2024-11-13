@@ -1,6 +1,6 @@
 require('dotenv').config();
-const {readFileContent, saveHtmlToFile} = require("./fileUtils");
-const {processArticleWithOpenAI} = require("./openaiUtils");
+const {readFileContent, saveHtmlToFile} = require("./utils/fileUtils");
+const {processArticleWithOpenAI} = require("./utils/openaiUtils");
 
 const filePath = './article.txt';
 const outputHtmlPath  = './artykul.html';
