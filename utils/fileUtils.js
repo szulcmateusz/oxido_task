@@ -19,7 +19,24 @@ const saveHtmlToFile = async (htmlContent, filePath) => {
     }
 };
 
+const updatePreviewTemplate = async (templatePath, newContent, outputPath) => {
+    try {
+        let template = await readFileContent(templatePath);
+
+        const updatedContent = template.replace(
+            /<body>([\s\S]*?)<\/body>/,
+            `<body>\n${newContent}\n</body>`
+        );
+
+        await saveHtmlToFile(updatedContent, outputPath);
+        console.log(`Podgląd artykułu został zaktualizowany w pliku ${outputPath}`);
+    } catch (error) {
+        console.error('Błąd podczas aktualizacji podglądu:', error);
+    }
+};
+
 module.exports = {
     readFileContent,
     saveHtmlToFile,
-}
+    updatePreviewTemplate,
+};
