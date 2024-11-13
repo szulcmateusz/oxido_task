@@ -41,9 +41,7 @@ const processArticleWithOpenAI = async (articleContent) => {
             temperature: 0.7,
         });
 
-        console.log(response.choices[0].message.content);
-
-        return response.choices[0].message.content;
+        return response.choices[0].message.content.replace('```html', '',).replace('```', '');
     } catch (error) {
         console.error('Error communicating with OpenAI API:', error);
         throw error;
