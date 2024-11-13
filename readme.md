@@ -68,5 +68,5 @@ Aplikacja wykona następujące kroki:
 ## Uwagi
 
 - Upewnij się, że plik `.env` jest poprawnie skonfigurowany z kluczem API.
+- Plik "podglad.html" oraz "szablon.html" znajdują się w folderze "templates".
 - `podglad.html` będzie aktualizowany za każdym razem, gdy aplikacja zostanie uruchomiona z nową treścią artykułu.
-
