@@ -2,8 +2,9 @@ require('dotenv').config();
 const fs = require('fs').promises;
 const {OpenAI} = require('openai');
 
-const filePath = './article.txt';
 const client = new OpenAI();
+const filePath = './article.txt';
+const outputHtmlPath  = './artykul.html';
 
 const readFileContent = async () => {
     try {
@@ -49,11 +50,22 @@ const processArticleWithOpenAI = async (articleContent) => {
     }
 };
 
+const saveHtmlToFile = async (htmlContent, filePath) => {
+    try {
+        await fs.writeFile(filePath, htmlContent);
+        console.log(`Plik zapisany jako ${filePath}`);
+    } catch (error) {
+        console.error(`Błąd podczas zapisywania pliku do ${filePath}:`, error);
+        throw error;
+    }
+};
+
 (async () => {
     try {
         console.log('Rozpoczęto...');
         const articleContent = await readFileContent('article.txt');
         const htmlContent = await processArticleWithOpenAI(articleContent);
+        await saveHtmlToFile(htmlContent, outputHtmlPath );
     } catch (error) {
         console.error('Błąd podczas generowania artykułu HTML:', error);
     }
